@@ -1,15 +1,19 @@
 IDA
-UCSB
 SmallExp
-dataset
+UCSB
 exp
+dataset/*DB
+dataset/DataScript/Cfg2Dat/*log
+dataset/DataScript/Cfg2Dat/Log/*
 
-!dataset/DataScript
-
-
-*gdl
-*cfg
-*dat
+.DS_Store
+*log
+*.gdl
+*.cfg
+*.tree
+*.log
+*.csv
+*Log
 Benign
 Malware
 benign

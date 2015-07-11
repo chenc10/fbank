@@ -1,0 +1,16 @@
+IDA
+UCSB
+SmallExp
+dataset
+exp
+
+!dataset/DataScript
+
+
+*gdl
+*cfg
+*dat
+Benign
+Malware
+benign
+malware

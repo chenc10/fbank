@@ -1,3 +1,5 @@
+#version: 1.0
+#	In this script, some functions with isolated nodes frequently appearing in some Malwares are refused to be abstracted.	
 #function description:
 #function input:
 #   GDB.txt: a txt file which saves the data of the graph in a certain format
@@ -199,11 +201,11 @@ if __name__ == "__main__":
     #TreeDotName = options.writefilename + "_TreeDot.dot"
     #TreeGraphName = options.writefilename + ".dot"
     #for readfilename itself, we needn't add ".txt" after it
-    ReadFileName=ReadFileName+".cfg"
+    #ReadFileName=ReadFileName+".cfg"
     fread = open(ReadFileName,'r')
     Database = fread.readlines()
     fread.close()
-    i = 0
+    i = 10
     ReturnNode = []
     EnterNode = []
     while i < len(Database):#we should make address * 10
@@ -614,25 +616,27 @@ if __name__ == "__main__":
                         break
             # above: DO WHILE CFG has been changed, using abstraction method 1 to abstract CFG
             IsSimplable = 1
-######################################################################################################################################
+    ####################################################################################################################################
 
-File_TreeRoot = open(TreeFileName, 'w')
-for i in range(len(TreeRootList)):
-    File_TreeRoot.write('%d' %i + ' %d' %TreeRootList[i].TreeRootType + ' %d' %TreeRootList[i].NumOfNodes + ' %d ' %TreeRootList[i].BelowLevel + '\n\t')
-    for c in TreeRootList[i].TCList:
-        File_TreeRoot.write('%d ' %(c.TreeRootListSeqNum))
-    File_TreeRoot.write('\n')
-File_TreeRoot.close()
-#
-#file_object = open(TreeDotName,'w')
-#file_object.write('digraph G{ \n')
-#for i in range(len(TreeRootList)):
-#    file_object.write('\tTNode' + '%d' %i + '[label = "%X"]' %TreeRootList[i].Addr + ';\n')
-#file_object.write('\n')
-#for i in range(len(TreeRootList)):
-#    for c in TreeRootList[i].TCList:
-#        file_object.write('\tTNode%d' %i + ' -> ' + 'TNode%d' %(c.TreeRootListSeqNum) +'\n')
-#file_object.write('}')
-#file_object.close()
-#subprocess.Popen('dot -Tjpg -o '+ TreeGraphName +' ' + TreeDotName,shell = True)
-print 'success!'
+    File_TreeRoot = open(TreeFileName, 'w')
+    for i in range(10):
+	File_TreeRoot.write('%s' %Database[i])
+    for i in range(len(TreeRootList)):
+        File_TreeRoot.write('%d' %i + ' %d' %TreeRootList[i].TreeRootType + ' %d' %TreeRootList[i].NumOfNodes + ' %d ' %TreeRootList[i].BelowLevel + '\n\t')
+        for c in TreeRootList[i].TCList:
+            File_TreeRoot.write('%d ' %(c.TreeRootListSeqNum))
+        File_TreeRoot.write('\n')
+    File_TreeRoot.close()
+    #
+    #file_object = open(TreeDotName,'w')
+    #file_object.write('digraph G{ \n')
+    #for i in range(len(TreeRootList)):
+    #    file_object.write('\tTNode' + '%d' %i + '[label = "%X"]' %TreeRootList[i].Addr + ';\n')
+    #file_object.write('\n')
+    #for i in range(len(TreeRootList)):
+    #    for c in TreeRootList[i].TCList:
+    #        file_object.write('\tTNode%d' %i + ' -> ' + 'TNode%d' %(c.TreeRootListSeqNum) +'\n')
+    #file_object.write('}')
+    #file_object.close()
+    #subprocess.Popen('dot -Tjpg -o '+ TreeGraphName +' ' + TreeDotName,shell = True)
+    print 'success!'
